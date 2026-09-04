@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name="cliente")
-public class Cliente {
+public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,5 +26,5 @@ public class Cliente {
     private String BI;
     @OneToMany(mappedBy="cliente")
 
-    private List<Veiculo> veiculos;
+    private List<Vehicle> veiculos;
  }

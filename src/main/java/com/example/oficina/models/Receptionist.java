@@ -4,8 +4,8 @@ package com.example.oficina.models;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.service.spi.InjectService;
 //import jakarta.validation.constraints.NotBlank;
 import java.time.Instant;
 
@@ -13,8 +13,9 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name="atendetor")
-public class Atendetor {
+@Table(name="recepcionist")
+@NoArgsConstructor
+public class Receptionist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
