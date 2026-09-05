@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 //import jakarta.validation.constraints.NotBlank;
 import java.time.Instant;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -29,6 +30,9 @@ public class Receptionist {
     private  String password;
     private Instant createat;
     private  Instant updatedat;
+
+    @OneToMany
+  private List<Customer> customers;
 
 
 

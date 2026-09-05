@@ -1,11 +1,16 @@
 package com.example.oficina.controllers;
 
 
+import com.example.oficina.Repository.CustomerRepository;
+import com.example.oficina.buiseness.CustomerService;
 import com.example.oficina.buiseness.ReceptionistService;
+import com.example.oficina.controllers.DTOs.CustomerDTO.CreateCustomerDTO;
 import com.example.oficina.controllers.DTOs.ReceptionistDTOS.CreateReceptionistDTO;
 import com.example.oficina.controllers.DTOs.ReceptionistDTOS.UpdateReceptionistDTO;
+import com.example.oficina.models.Customer;
 import com.example.oficina.models.Receptionist;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +18,12 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/atendetor")
+@RequestMapping("/recepcionist")
 @RequiredArgsConstructor
 public class ReceptionistController {
 
     private  final ReceptionistService ReceptionistService;
-
+private  final CustomerService customerService;
 
     @PostMapping("/creat")
     public ResponseEntity<Receptionist> creat(@RequestBody CreateReceptionistDTO atendetorDTO){
@@ -52,12 +57,17 @@ public class ReceptionistController {
     }
 
     @PutMapping("/{id}")
-    public  ResponseEntity<Receptionist>  updateAtendetor(@PathVariable("id") Long id, @RequestBody UpdateReceptionistDTO updateAtendatorDTO){
+     public  ResponseEntity<Receptionist>  updateAtendetor(@PathVariable("id") Long id, @RequestBody UpdateReceptionistDTO updateAtendatorDTO){
 
         var user=ReceptionistService.updateUser(updateAtendatorDTO,id);
 
         return  ResponseEntity.ok(user);
     }
+@PostMapping("/{id}/registerCustomers")
+public  ResponseEntity<Customer> createCustomer(@PathVariable("id") Long id,@RequestBody CreateCustomerDTO createCustomerDTO){
+var customer=customerService.createCustomer(id,createCustomerDTO);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(customer);
 
+}
 }

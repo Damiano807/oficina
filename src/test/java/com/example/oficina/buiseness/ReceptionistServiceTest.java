@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.Instant;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -46,7 +47,7 @@ private  ArgumentCaptor<String> argumentCaptorUsername;
             Long id=50+ new Random().nextLong();
             var atendetor=new Receptionist(id,"name",
                     "username","password",
-                    Instant.now(),null);
+                    Instant.now(),null,Collections.emptyList());
 
             var input =new CreateReceptionistDTO("name",
                     "username","email",
@@ -75,7 +76,7 @@ private  ArgumentCaptor<String> argumentCaptorUsername;
             Long id=50+new Random().nextLong();
             var recepcionist=new Receptionist(id,"name",
                     "username","password",
-                    Instant.now(),null);
+                    Instant.now(),null, Collections.emptyList());
             doReturn(Optional.of(recepcionist)).when(recepcionistRepositoRy).findById(argumentCaptorId.capture());
             var output=recepcionistService.getRecepcionistById(id);
 
@@ -89,7 +90,7 @@ private  ArgumentCaptor<String> argumentCaptorUsername;
         void ShouldListARecepcionist(){
 
             Long id=50+new Random().nextLong();
-            var recepcionist  = new Receptionist(id,"name","username","email",Instant.now(),null);
+            var recepcionist  = new Receptionist(id,"name","username","email",Instant.now(),null,Collections.emptyList());
             var list= List.of(recepcionist) ;
             doReturn(list).when(recepcionistRepositoRy).findAll();
 
