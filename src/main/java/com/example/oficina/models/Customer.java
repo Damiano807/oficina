@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,7 +25,12 @@ public class Customer {
     private  String name;
     @Column(name="BI",length =16)
     private String BI;
-    @OneToMany(mappedBy="cliente")
+    private Instant createdAt;
+    private  Instant updateAt;
+    @OneToMany(mappedBy="customer")
+   private List<Vehicle> veiculos;
 
-    private List<Vehicle> veiculos;
+    @ManyToOne
+    @JoinColumn(name="recepcionistId",referencedColumnName = "id")
+    private  Receptionist receptionist;
  }

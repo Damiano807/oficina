@@ -33,6 +33,6 @@ public class Vehicle {
     private Status status = Status.DAMAGED;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
+    @JoinColumn(name = "customer_id", nullable = false,referencedColumnName = "id")
     private Customer customer;
 }
