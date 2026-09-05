@@ -27,9 +27,13 @@ public class ReceptionistService {
 
                 throw  new ConflictException("Ther is an user with this username "+atendetorDTO.username());
             }
-        var atendetor=new Receptionist(null,atendetorDTO.name(),
-                atendetorDTO.username(), atendetorDTO.password(),
-                Instant.now(),null);
+        var atendetor=new Receptionist();
+
+          atendetor.setName(atendetorDTO.name());
+             atendetor.setUsername(atendetorDTO.username());
+       atendetor.setPassword(atendetorDTO.password());
+               atendetor.setCreateat(Instant.now());
+    ;
 
           var entity=  ReceptionistRepositoRy.save(atendetor);
 
